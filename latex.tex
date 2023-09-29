@@ -1,0 +1,896 @@
+%package list
+\documentclass{article}
+\usepackage[top=3cm, bottom=3cm, outer=3cm, inner=3cm]{geometry}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{array}
+%\usepackage{multicol}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{svg}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstdefinestyle{ascii-tree}{
+    literate={├}{|}1 {─}{--}1 {└}{+}1 
+  }
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+%\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{array}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\itemEmail}{rcompanocca@unsa.edu.pe}
+\newcommand{\itemStudent}{Roni Companocca Checco}
+\newcommand{\itemCourse}{Programación}
+\newcommand{\itemCourseCode}{20210558}
+\newcommand{\itemSemester}{II}
+\newcommand{\itemUniversity}{Universidad Nacional de San Agustín de Arequipa}
+\newcommand{\itemFaculty}{Facultad de Ingeniería de Producción y Servicios}
+\newcommand{\itemDepartment}{Departamento Académico de Ingeniería de Sistemas e Informática}
+\newcommand{\itemSchool}{Escuela Profesional de Ingeniería de Sistemas}
+\newcommand{\itemAcademic}{2023 - B}
+\newcommand{\itemInput}{Del 29 Septiembre 2023}
+\newcommand{\itemOutput}{Al 29 Septiembre 2023}
+\newcommand{\itemPracticeNumber}{05}
+\newcommand{\itemTheme}{ArrayList}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc}
+\AtBeginDocument{\selectlanguage{spanish}}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\refname}{Referencias}
+\renewcommand{\tablename}{Tabla} %esto no funciona cuando se usa babel
+\AtBeginDocument{%
+	\renewcommand\tablename{Tabla}
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\fancyhead[L]{\raisebox{-0.2\height}{\includegraphics[width=3cm]{logo_episunsa.png}}}
+\fancyhead[C]{\fontsize{7}{7}\selectfont	\itemUniversity \\ \itemFaculty \\ \itemDepartment \\ \itemSchool \\ \textbf{\itemCourse}}
+\fancyhead[R]{\raisebox{-0.2\height}{\includegraphics[width=1.2cm]{abet.png}}}
+\fancyfoot[L]{Estudiante Roni Companocca Checco}
+\fancyfoot[C]{\itemCourse}
+\fancyfoot[R]{Página \thepage}
+
+% para el codigo fuente
+\usepackage{listings}
+\usepackage{color, colortbl}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codebackground}{rgb}{0.95, 0.95, 0.92}
+\definecolor{tablebackground}{rgb}{0.8, 0, 0}
+
+\lstset{frame=tb,
+	language=bash,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	backgroundcolor= \color{codebackground},
+}
+
+\begin{document}
+	
+	\vspace*{10px}
+	
+	\begin{center}	
+		\fontsize{17}{17} \textbf{ Informe de Laboratorio \itemPracticeNumber}
+	\end{center}
+	\centerline{\textbf{\Large Tema: \itemTheme}}
+	%\vspace*{0.5cm}	
+
+	\begin{flushright}
+		\begin{tabular}{|M{2.5cm}|N|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white} \textbf{Nota}  \\
+			\hline 
+			     \\[30pt]
+			\hline 			
+		\end{tabular}
+	\end{flushright}	
+
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white} \textbf{Estudiante} & \color{white}\textbf{Escuela}  & \color{white}\textbf{Asignatura}   \\
+			\hline 
+			{\itemStudent \par \itemEmail} & \itemSchool & {\itemCourse \par Semestre: \itemSemester \par Código: \itemCourseCode}     \\
+			\hline 			
+		\end{tabular}
+	\end{table}		
+	
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white}\textbf{Laboratorio} & \color{white}\textbf{Tema}  & \color{white}\textbf{Duración}   \\
+			\hline 
+			\itemPracticeNumber & \itemTheme & 02 horas   \\
+			\hline 
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[H]
+		\begin{tabular}{|x{4.7cm}|x{4.8cm}|x{4.8cm}|}
+			\hline 
+			\rowcolor{tablebackground}
+			\color{white}\textbf{Semestre académico} & \color{white}\textbf{Fecha de inicio}  & \color{white}\textbf{Fecha de entrega}   \\
+			\hline 
+			\itemAcademic & \itemInput &  \itemOutput  \\
+			\hline 
+		\end{tabular}
+	\end{table}
+
+    \section{TAREA}
+	\begin{itemize}	
+    \subsection{Objetivos:}
+		\item Crear e inicializar ArrayList
+		\item Realizar búsquedas secuencial y binaria en un ArrayList
+        \item Implementar métodos de ordenamiento en ArrayList
+        \item Solucionar problemas
+    \subsection{Competencias a alcanzar:}
+		\item Diseña, responsablemente, sistemas, componentes o procesos para satisfacer necesidades dentro de restricciones realistas: económicas, medio ambientales, sociales, políticas, éticas, de salud, de seguridad, manufacturación y sostenibilidad.
+        \item Aplica de forma flexible, técnicas, métodos, principios, normas, estándares y herramientas de ingeniería necesarias para la construcción de software e implementación de sistemas de información.
+    \subsection{Consideraciones de evaluacion:}
+        \item No deberá utilizar constructores no vistos en clase
+        \item No podrá modificar el código base entregado para este laboratorio
+        \item Deberá utilizar nombre de variables significativos
+        \item Deberá realizar pruebas adicionales
+        \item El alumno deberá indicar en su código con quien colaboró
+        \item El alumno será requerido de realizar modificaciones en su código y responder a preguntas sobre el mismo
+        \item Todos los ejercicios deberán traerse terminados en caso de ser tarea para la casa
+        \item Si tiene ejercicios sin terminar no importa, se revisará el avance y se discutirá sobre las dificultades encontradas.
+    \subsection{Indicaciones generales:}
+        \item Todos los ejercicios deberán ser guardados en el mismo Proyecto
+        \item El Proyecto deberá tener el nombre del Laboratorio y el nombre del alumno, así por ejemplo: Laboratorio 1 – Juan Perez
+        \item Cada Clase deberá tener el nombre del ejercicio, así por ejemplo: Ejercicio1
+        \item Utilice nombres de variables significativos y todas las recomendaciones de estilo
+        \item Especialmente, su código deberá estar correctamente indentado
+        \item Deberá pasar TODOS los casos de prueba
+	\end{itemize}
+
+    \section{EQUIPOS, MATERIALES Y TEMAS UTILIZADOS}
+	\begin{itemize}
+		\item Sistema Operativo Windows
+		\item OpenJDK 64-Bits 17.0.7.
+		\item Git 2.39.2.	
+  	\item Cuenta en GitHub con el correo institucional.
+	\end{itemize}
+
+    \section{URL DE REPOSITORIO GITHUB}
+	\begin{itemize}
+		\item URL para el Repositorio GitHub.
+		\item \url{https://github.com/RONI-COMPANOCCA-CHECCO}
+		\item URL para el laboratorio 02 en el Repositorio GitHub.	
+        \item \url{https://github.com/RONI-COMPANOCCA-CHECCO/FP2-LAB3}
+	\end{itemize}
+    
+    \section{ACTIVIDADES}
+	\begin{itemize}
+        \subsection{EJERCICIO RESUELTO}
+		\item En una empresa paga a sus vendedores comisiones de acuerdo con los montos de ventas mensuales en base a la siguiente escala:
+    \begin{lstlisting}[language=bash]
+        MONTO VENTAS         COMISIÓN %
+        > 2001                     12
+        menos 2000                 10
+    \end{lstlisting}
+        La empresa cuenta con “N” Vendedores y se desea calcular el total de los sueldos por cada tipo de comisión y el total a desembolsar por la empresa. Finalidad: Mostrar los sueldos (sueldo base + comisión) de los N vendedores
+        \item Primero crearemos la Clase Vendedor dentro del Package Libreria.
+        \begin{lstlisting}[language=java]
+// RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 03
+// FUNDAMENTOS DE PROGRAMACION 
+import java.util.*;
+
+public class Vendedor{
+    //ATRIBUTOS
+    private String nombre;
+    private double sueldoBase;
+    private double comision;
+    private double sueldoFinal;
+    private double montoVenta;
+    private double porcentajeComision;
+    //CONSTRUCTORES
+    public Vendedor(){
+        this.nombre = "";
+        this.sueldoBase = 0.00;
+        this.comision = 0.00;
+        this.sueldoFinal = 0.00;
+    }
+
+    public Vendedor(String nombre, double sueldoBase, double montoVenta){
+        this.nombre = nombre;
+        this.sueldoBase = sueldoBase;
+        this.montoVenta = montoVenta;
+    }
+    // METODOS PUBLICOS
+    private void calcularComision(){
+        if(this.montoVenta < 2000){
+            this.porcentajeComision = 10;
+            this.comision = this.montoVenta * (this.porcentajeComision/100);
+        }else{
+            if(this.montoVenta >= 2001){
+                this.porcentajeComision = 12;
+                this.comision = this.montoVenta * (this.porcentajeComision/100);
+            }
+        }
+    }
+    public void calcularSueldoFinal(){
+        this.calcularComision();
+        this.sueldoFinal = this.sueldoBase + comision;
+    }
+    public String ToString(){
+        StringBuilder abMensaje = new StringBuilder();
+        abMensaje.append("-------------\nDATOS DEL VENDEDOR\n-----------");
+        abMensaje.append("\nNombre: "+nombre);
+        abMensaje.append("\nSueldo Base: "+sueldoBase);
+        abMensaje.append("\nMonto Venta: "+montoVenta);
+        abMensaje.append("\nComision: "+comision);
+        abMensaje.append("\nSueldo Final: "+sueldoFinal);
+
+        return abMensaje.toString();
+    }
+}
+        \end{lstlisting}
+		\item Segundo: Dentro de la clase Main, crearemos un Arreglo de objetos Vendedor. Luego desarrollamos el método para Crear Objetos Vendedor y agregarlos al Arreglo de objetos. Por último, tendremos el método para recorrer el arreglo e imprimir los datos de los objetos vendedores.
+        \begin{lstlisting}[language=java]
+import java.util.Scanner;
+public class Main {
+    private static Scanner consola = new Scanner (System.in);
+    private static Vendedor objVendedor;
+    private static final int N = 3;
+    private static Vendedor [] listaVendedores = new Vendedor[N];
+    private static int posicion = 0;
+
+    private static void crearVendedores(){
+        for(int i=0; i<listaVendedores.length; i++){
+            String nombre;
+            double sueldoBase, montoVentas;
+            System.out.println("Ingrese el Nombre: ");
+            nombre = consola.next();
+            System.out.println("Ingrese el Sueldo: ");
+            sueldoBase = consola.nextDouble();
+            System.out.println("Ingrese el Monto de Ventas: ");
+            montoVentas = consola.nextDouble();
+            //CREAMOS INSTANCIA Y LE PASAMOS LOS DATOS
+            objVendedor = new Vendedor(nombre, sueldoBase, montoVentas);
+            objVendedor.calcularSueldoFinal();
+            //AGREGAMOS OBJETO AL ARREGLO DE OBJETOS
+            listaVendedores[i] = objVendedor;
+        }
+    }
+
+    private static void imprimirVendedores(){
+        for(int con = 0; con < listaVendedores.length; con++){
+            Vendedor objVendedor1 = listaVendedores[con];
+            System.out.println(objVendedor1.ToString());
+        }
+    }
+    public static void main(String[] args){
+        crearVendedores();
+        imprimirVendedores();
+    }
+}
+        \end{lstlisting}
+        \item Ejecucion
+        \begin{lstlisting}[language=java]
+Ingrese el Nombre: 
+Roni
+Ingrese el Sueldo: 
+20
+Ingrese el Monto de Ventas: 
+34
+Ingrese el Nombre: 
+Reyna
+Ingrese el Sueldo: 
+1000
+Ingrese el Monto de Ventas: 
+45
+Ingrese el Nombre: 
+Walter
+Ingrese el Sueldo: 
+2300
+Ingrese el Monto de Ventas: 
+50
+-------------
+DATOS DEL VENDEDOR
+-----------
+Nombre: Roni
+Sueldo Base: 20.0
+Monto Venta: 34.0
+Comision: 3.4000000000000004
+Sueldo Final: 23.4
+-------------
+DATOS DEL VENDEDOR
+-----------
+Nombre: Reyna
+Sueldo Base: 1000.0
+Monto Venta: 45.0
+Comision: 4.5
+Sueldo Final: 1004.5
+-------------
+DATOS DEL VENDEDOR
+-----------
+Nombre: Walter
+Sueldo Base: 2300.0
+Monto Venta: 50.0
+Comision: 5.0
+Sueldo Final: 2305.0
+        \end{lstlisting}
+
+        \subsection{EJERCICIO PROPUESTO}
+        \item la clase DemoBatalla.java
+        \begin{lstlisting}[language=java]
+        // RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 03
+// FUNDAMENTOS DE PROGRAMACION 
+import java.util.*;
+
+public class DemoBatalla {
+    public static void main(String[] args) {
+        Nave[] misNaves = new Nave[10];
+        Scanner sc = new Scanner(System.in);
+        String nomb, col;
+        int fil, punt;
+        boolean est;
+        
+        for (int i = 0; i < misNaves.length; i++) {
+            System.out.println("Nave " + (i + 1));
+            System.out.print("Nombre: ");
+            nomb = sc.next();
+            System.out.print("Fila: ");
+            fil = sc.nextInt();
+            System.out.print("Columna: ");
+            col = sc.next();
+            System.out.print("Estado: ");
+            est = sc.nextBoolean();
+            System.out.print("Puntos: ");
+            punt = sc.nextInt();
+            
+            misNaves[i] = new Nave();
+            //Se crea un objeto Nave y se asigna su referencia a misNaves
+            misNaves[i].setNombre(nomb);
+            misNaves[i].setFila(fil);
+            misNaves[i].setColumna(col);
+            misNaves[i].setEstado(est);
+            misNaves[i].setPuntos(punt);
+        }
+        
+        System.out.println("\nNaves creadas:");
+        mostrarNaves(misNaves);
+        
+        System.out.print("\nIngrese un nombre para mostrar todas las naves con ese nombre: ");
+        String BuscarPorNombre = sc.next();
+        mostrarPorNombre(misNaves, BuscarPorNombre);
+        
+        System.out.print("\nIngrese el numero de puntos para mostrar naves que tengan puntos iguales o menores: ");
+        int BuscarPorPuntos = sc.nextInt();
+        mostrarPorPuntos(misNaves, BuscarPorPuntos);
+        
+        Nave naveMayorPuntos = mostrarMayorPuntos(misNaves);
+        System.out.println("\nNave con mayor numero de puntos: " + naveMayorPuntos);
+        
+        Nave[] navesDesordenadas = NavesDesordenadas(misNaves);
+        System.out.println("\nla lista de naves desordenadas es: ");
+        mostrarNaves(navesDesordenadas);
+    }
+    
+    // Método para mostrar todas las naves
+    public static void mostrarNaves(Nave[] flota) {
+        for (Nave nave : flota) {
+            System.out.println(nave);
+        }
+    }
+    
+    // Método para mostrar todas las naves de un nombre que se pide por teclado
+    public static void mostrarPorNombre(Nave[] flota, String BuscarPorNombre) {
+        for (Nave nave : flota) {
+            if (nave.getNombre().equalsIgnoreCase(BuscarPorNombre)) {
+                System.out.println(nave);
+            }
+        }
+    }
+    
+    // Método para mostrar todas las naves con un número de puntos inferior o igual
+    // al número de puntos que se pide por teclado
+    public static void mostrarPorPuntos(Nave[] flota, int BuscarPorPuntos) {
+        for (Nave nave : flota) {
+            if (nave.getPuntos() <= BuscarPorPuntos) {
+                System.out.println(nave);
+            }
+        }
+    }
+    
+    // Método que devuelve la Nave con mayor número de Puntos
+    public static Nave mostrarMayorPuntos(Nave[] flota) {
+        Nave mayorPuntos = null;
+        int maxPuntos = Integer.MIN_VALUE;
+        
+        for (Nave nave : flota) {
+            if (nave.getPuntos() > maxPuntos) {
+                maxPuntos = nave.getPuntos();
+                mayorPuntos = nave;
+            }
+        }
+        
+        return mayorPuntos;
+    }
+    
+    // Crear un método que devuelva un nuevo arreglo de objetos con todos los objetos previamente ingresados
+    // pero aleatoriamente desordenados
+    public static Nave[] NavesDesordenadas(Nave[] flota) {
+        Nave[] navesDesordenadas = Arrays.copyOf(flota, flota.length); // Crear una copia del arreglo original
+        Random random = new Random();
+    
+        // Realizar una permutación aleatoria del arreglo
+        for (int i = navesDesordenadas.length - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+            Nave aux = navesDesordenadas[i];
+            navesDesordenadas[i] = navesDesordenadas[j];
+            navesDesordenadas[j] = aux;
+        }
+    
+        return navesDesordenadas;
+    }
+}
+
+        \end{lstlisting}
+
+        \item la clase Nave.java
+        \begin{lstlisting}[language=java]
+public class Nave {
+    private String nombre;
+    private int fila;
+    private String columna;
+    private boolean estado;
+    private int puntos;
+
+    // METODOS MUTADORES
+    public void setNombre(String n) {
+        nombre = n;
+    }
+
+    public void setFila(int f) {
+        fila = f;
+    }
+
+    public void setColumna(String c) {
+        columna = c;
+    }
+
+    public void setEstado(boolean e) {
+        estado = e;
+    }
+
+    public void setPuntos(int p) {
+        puntos = p;
+    }
+
+    // METODOS ACCESORES
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public String getColumna() {
+        return columna;
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public String toString() {
+        return "Nave [nombre=" + nombre + ", fila=" + fila + ", columna=" + columna + ", estado=" + estado + ", puntos=" + puntos + "]";
+    }
+}
+         \end{lstlisting}
+
+         \item Ejecucion
+        \begin{lstlisting}[language=java]
+Nave 1
+Nombre: Huascar
+Fila: 1
+Columna: 1
+Estado: TRUE
+Puntos: 3
+Nave 2
+Nombre: Atlantis
+Fila: 2
+Columna: 2
+Estado: TRUE
+Puntos: 4
+Nave 3
+Nombre: Discovery
+Fila: 3
+Columna: 3
+Estado: TRUE
+Puntos: 3
+Nave 4
+Nombre: EnterPrice
+Fila: 3
+Columna: 2
+Estado: TRUE
+Puntos: 5
+Nave 5
+Nombre: Galactica
+Fila: 4
+Columna: 4
+Estado: TRUE
+Puntos: 4
+Nave 6
+Nombre: Halcon
+Fila: 5
+Columna: 5
+Estado: FALSE
+Puntos: 4
+Nave 7
+Nombre: Estrella
+Fila: 6
+Columna: 6
+Estado: TRUE
+Puntos: 3
+Nave 8
+Nombre: Moya
+Fila: 7
+Columna: 7
+Estado: TRUE
+Puntos: 5
+Nave 9
+Nombre: Odiseus
+Fila: 8
+Columna: 8
+Estado: TRUE
+Puntos: 4
+Nave 10
+Nombre: Rama
+Fila: 9
+Columna: 9
+Estado: TRUE
+Puntos: 3
+
+Naves creadas:
+Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
+Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
+Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
+Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
+Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
+Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
+Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
+Nave [nombre=Moya, fila=7, columna=7, estado=true, puntos=5]
+Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
+Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+
+Ingrese un nombre para mostrar todas las naves con ese nombre: Rama
+Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+
+Ingrese el numero de puntos para mostrar naves que tengan puntos iguales o menores: 4
+Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
+Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
+Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
+Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
+Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
+Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
+Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
+Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+
+Nave con mayor numero de puntos: Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
+
+la lista de naves desordenadas es:
+Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
+Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
+Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
+Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
+Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
+Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
+Nave [nombre=Moya, fila=7, columna=7, estado=true, puntos=5]
+Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
+Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
+         \end{lstlisting}
+    
+    \subsection{SOLUCIONAR LA ACTIVIDAD 4 DE LA PRACTICA 1 PERO USANDO ARREGLOS DE OBJETOS}
+    
+    \item Clase menu
+    \begin{lstlisting}[language=java]
+// RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 03
+// FUNDAMENTOS DE PROGRAMACION 
+import java.util.Scanner;
+public class Menu {
+    private static Scanner consola = new Scanner (System.in);
+    private static Soldado objSoldado;
+    private static final int N = 5;
+    private static Soldado [] soldadito = new Soldado[N];
+
+    private static void crearSoldados(){
+        for(int i=0; i<soldadito.length; i++){
+            String nombre;
+            int nivelVida;
+            System.out.println("Ingrese el Nombre: ");
+            nombre = consola.next();
+            System.out.println("Ingrese el nivel de Vida: ");
+            nivelVida = consola.nextInt();
+            //CREAMOS INSTANCIA Y LE PASAMOS LOS DATOS
+            objSoldado = new Soldado(nombre, nivelVida);
+            //AGREGAMOS OBJETO AL ARREGLO DE OBJETOS
+            soldadito[i] = objSoldado;
+        }
+    }
+
+    private static void imprimirSoldados(){
+        for(int con = 0; con < soldadito.length; con++){
+            Soldado objSoldado1 = soldadito[con];
+            System.out.println(objSoldado1.ToString());
+        }
+    }
+    public static void main(String[] args){
+        crearSoldados();
+        imprimirSoldados();
+    }
+}
+    \end{lstlisting}
+
+    \item Clase Soldado
+    \begin{lstlisting}[language=java]
+import java.util.*;
+
+public class Soldado{
+    //ATRIBUTOS
+    private String nombre;
+    private int nivelVida;
+    //CONSTRUCTORES
+    public Soldado(){
+        this.nombre = "";
+        this.nivelVida = 0;
+    }
+
+    public Soldado(String nombre, int nivelVida){
+        this.nombre = nombre;
+        this.nivelVida = nivelVida;
+    }
+
+    public String ToString(){
+        StringBuilder abMensaje = new StringBuilder();
+        abMensaje.append("-------------\nDATOS DEL SOLDADO\n-----------");
+        abMensaje.append("\nNombre: "+nombre);
+        abMensaje.append("\nNivel de vida: "+nivelVida);
+
+        return abMensaje.toString();
+    }
+}
+    \end{lstlisting}
+    
+    \item Ejecucion
+    \begin{lstlisting}[language=java]
+Ingrese el Nombre:
+roni
+Ingrese el nivel de Vida:
+3
+Ingrese el Nombre:
+jesus
+Ingrese el nivel de Vida:
+3
+Ingrese el Nombre:
+raton
+Ingrese el nivel de Vida:
+4
+Ingrese el Nombre:
+simos
+Ingrese el nivel de Vida:
+5
+Ingrese el Nombre:
+pedro
+Ingrese el nivel de Vida:
+4
+-------------
+DATOS DEL SOLDADO
+-----------
+Nombre: roni
+Nivel de vida: 3
+-------------
+DATOS DEL SOLDADO
+-----------
+Nombre: jesus
+Nivel de vida: 3
+-------------
+DATOS DEL SOLDADO
+-----------
+Nombre: raton
+Nivel de vida: 4
+-------------
+DATOS DEL SOLDADO
+-----------
+Nombre: simos
+Nivel de vida: 5
+-------------
+DATOS DEL SOLDADO
+-----------
+Nombre: pedro
+Nivel de vida: 4
+        \end{lstlisting}
+    
+    \subsection{SOLUCIONAR LA ACTIVIDAD 5 DE LA PRACTICA 1 PERO USANDO ARREGLOS DE OBJETOS}
+
+    \item Menu de la batalla
+    \begin{lstlisting}[language=java]
+// RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 03
+// FUNDAMENTOS DE PROGRAMACION 
+import java.util.Random;
+
+public class EjercitoMenu {
+    public static void main(String[] args) {
+        Random aleatorio = new Random();
+
+        // Crear dos ejércitos con un número aleatorio de soldados entre 1 y 5
+        int Ejercito1 = aleatorio.nextInt(5) + 1;
+        int Ejercito2 = aleatorio.nextInt(5) + 1;
+
+        Ejercito ejercito1 = new Ejercito(Ejercito1);
+        Ejercito ejercito2 = new Ejercito(Ejercito2);
+
+        // Mostrar los datos de ambos ejércitos
+        System.out.println("Ejército 1:");
+        mostrarEjercito(ejercito1);
+
+        System.out.println("\nEjército 2:");
+        mostrarEjercito(ejercito2);
+
+        // DETERMINAMOS EL EJERCITO GANADOR
+        int numeroSoldadosEjercito1 = ejercito1.getNumeroDeSoldados();
+        int numeroSoldadosEjercito2 = ejercito2.getNumeroDeSoldados();
+
+        if (numeroSoldadosEjercito1 > numeroSoldadosEjercito2) {
+            System.out.println("\nEl Ejército 1 es el ganador.");
+        } else if (numeroSoldadosEjercito2 > numeroSoldadosEjercito1) {
+            System.out.println("\nEl Ejército 2 es el ganador.");
+        } else {
+            System.out.println("\nLa batalla no tuvo victorioso a ningun ejercito");
+        }
+    }
+
+    public static void mostrarEjercito(Ejercito ejercito) {
+        Soldados[] soldados = ejercito.getSoldados();
+        for (int i = 0; i < soldados.length; i++) {
+            System.out.println("Soldado " + i + ": " + soldados[i].getNombre());
+        }
+    }
+}
+    \end{lstlisting}
+
+    \item La primera clase Soldados
+    \begin{lstlisting}[language=java]
+public class Soldados {
+    private String nombre;
+
+    public Soldados(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+}
+    \end{lstlisting}
+    
+    \item La clase Ejercito
+    \begin{lstlisting}[language=java]
+class Ejercito {
+    private Soldados[] soldado;
+
+    public Ejercito(int numeroSoldados) {
+        soldado = new Soldados[numeroSoldados];
+        for (int i = 0; i < numeroSoldados; i++) {
+            soldado[i] = new Soldados("Soldado" + i);
+        }
+    }
+
+    public Soldados[] getSoldados() {
+        return soldado;
+    }
+
+    public int getNumeroDeSoldados() {
+        return soldado.length;
+    }
+}
+    \end{lstlisting}
+
+    \item Ejecucion
+    \begin{lstlisting}[language=java]
+Ejército 1:
+Soldado 0: Soldado0
+Soldado 1: Soldado1
+Soldado 2: Soldado2
+
+Ejército 2:
+Soldado 0: Soldado0
+Soldado 1: Soldado1
+Soldado 2: Soldado2
+Soldado 3: Soldado3
+Soldado 4: Soldado4
+
+El Ejército 2 es el ganador.
+    \end{lstlisting}
+    
+	\end{itemize}
+ 
+    \section{CUESTIONARIO}
+
+	\begin{itemize}
+		\subsection ¿Qué ventajas tienen los arreglos de objetos sobre los arreglos estándar?
+        \item Capacidad de almacenar valores nulos: Los arreglos de objetos pueden contener elementos nulos (null), lo que significa que puedes tener celdas vacías en un arreglo sin lanzar una excepción. En contraste, los arreglos estándar en muchos lenguajes no permiten elementos nulos, lo que puede ser inconveniente en algunas situaciones.
+		
+  \subsection ¿Cómo debe inicializarse un arreglo de objetos?
+        \item Se debe inicializar de esta forma
+      \begin{lstlisting}[language=java]
+  miArreglo = new MiClase[tamaño];
+    \end{lstlisting}
+
+		\subsection ¿Cuándo deberíamos usar los arreglos de objetos?
+  \item como cuando necesitamos almacenar una colección de objetos relacionados: Los arreglos de objetos son ideales para agrupar objetos que están relacionados entre sí de alguna manera. Por ejemplo, podemos usar un arreglo de objetos "Estudiante" para almacenar información sobre estudiantes en una clase.
+	\end{itemize}
+	
+	\section{REFERENCIAS}
+	\begin{itemize}
+		\item M. Aedo, “Fundamentos de Programación 2 - Tópicos de Programación Orientada a Objetos”, Primera Edición, 2021, Editorial UNSA.
+		\item \url{https://github.com/rescobedoq/programacion.git}
+		\item J. Dean, "Introduction to programming with Java: A Problem Solving Approach”, Third Edition, 2021, McGraw-Hill.
+        \item C. T. Wu, "An Introduction to Object-Oriented Programming with Java", Fifth Edition, 2010, McGraw-Hill.
+        \item P. Deitel, "Java How to Program", Eleventh Edition, 2017, Prentice Hall.
+	\end{itemize}
+	
+%\clearpage
+%\bibliographystyle{apalike}
+%\bibliographystyle{IEEEtranN}
+%\bibliography{bibliography}
+			
+\end{document}
