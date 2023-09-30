@@ -1,3 +1,7 @@
+// RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 05
+// FUNDAMENTOS DE PROGRAMACION 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
