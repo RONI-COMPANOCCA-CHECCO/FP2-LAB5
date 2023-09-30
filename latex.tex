@@ -168,23 +168,6 @@
     \subsection{Competencias a alcanzar:}
 		\item Diseña, responsablemente, sistemas, componentes o procesos para satisfacer necesidades dentro de restricciones realistas: económicas, medio ambientales, sociales, políticas, éticas, de salud, de seguridad, manufacturación y sostenibilidad.
         \item Aplica de forma flexible, técnicas, métodos, principios, normas, estándares y herramientas de ingeniería necesarias para la construcción de software e implementación de sistemas de información.
-    \subsection{Consideraciones de evaluacion:}
-        \item No deberá utilizar constructores no vistos en clase
-        \item No podrá modificar el código base entregado para este laboratorio
-        \item Deberá utilizar nombre de variables significativos
-        \item Deberá realizar pruebas adicionales
-        \item El alumno deberá indicar en su código con quien colaboró
-        \item El alumno será requerido de realizar modificaciones en su código y responder a preguntas sobre el mismo
-        \item Todos los ejercicios deberán traerse terminados en caso de ser tarea para la casa
-        \item Si tiene ejercicios sin terminar no importa, se revisará el avance y se discutirá sobre las dificultades encontradas.
-    \subsection{Indicaciones generales:}
-        \item Todos los ejercicios deberán ser guardados en el mismo Proyecto
-        \item El Proyecto deberá tener el nombre del Laboratorio y el nombre del alumno, así por ejemplo: Laboratorio 1 – Juan Perez
-        \item Cada Clase deberá tener el nombre del ejercicio, así por ejemplo: Ejercicio1
-        \item Utilice nombres de variables significativos y todas las recomendaciones de estilo
-        \item Especialmente, su código deberá estar correctamente indentado
-        \item Deberá pasar TODOS los casos de prueba
-	\end{itemize}
 
     \section{EQUIPOS, MATERIALES Y TEMAS UTILIZADOS}
 	\begin{itemize}
@@ -198,685 +181,517 @@
 	\begin{itemize}
 		\item URL para el Repositorio GitHub.
 		\item \url{https://github.com/RONI-COMPANOCCA-CHECCO}
-		\item URL para el laboratorio 02 en el Repositorio GitHub.	
-        \item \url{https://github.com/RONI-COMPANOCCA-CHECCO/FP2-LAB3}
+		\item URL para el laboratorio 05 en el Repositorio GitHub.	
+        \item \url{https://github.com/RONI-COMPANOCCA-CHECCO/FP2-LAB5}
 	\end{itemize}
     
     \section{ACTIVIDADES}
 	\begin{itemize}
         \subsection{EJERCICIO RESUELTO}
-		\item En una empresa paga a sus vendedores comisiones de acuerdo con los montos de ventas mensuales en base a la siguiente escala:
-    \begin{lstlisting}[language=bash]
-        MONTO VENTAS         COMISIÓN %
-        > 2001                     12
-        menos 2000                 10
-    \end{lstlisting}
-        La empresa cuenta con “N” Vendedores y se desea calcular el total de los sueldos por cada tipo de comisión y el total a desembolsar por la empresa. Finalidad: Mostrar los sueldos (sueldo base + comisión) de los N vendedores
-        \item Primero crearemos la Clase Vendedor dentro del Package Libreria.
+		\item - Creamos la Clase ColeccionesList con los siguientes métodos que realizan las operaciones que se pueden realizar con el ArrayList:
+
         \begin{lstlisting}[language=java]
 // RONI COMPANOCCA CHECCO
 // CUI: 20210558
-// LABORATORIO 03
+// LABORATORIO 05
 // FUNDAMENTOS DE PROGRAMACION 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
-public class Vendedor{
-    //ATRIBUTOS
-    private String nombre;
-    private double sueldoBase;
-    private double comision;
-    private double sueldoFinal;
-    private double montoVenta;
-    private double porcentajeComision;
-    //CONSTRUCTORES
-    public Vendedor(){
-        this.nombre = "";
-        this.sueldoBase = 0.00;
-        this.comision = 0.00;
-        this.sueldoFinal = 0.00;
-    }
-
-    public Vendedor(String nombre, double sueldoBase, double montoVenta){
-        this.nombre = nombre;
-        this.sueldoBase = sueldoBase;
-        this.montoVenta = montoVenta;
-    }
-    // METODOS PUBLICOS
-    private void calcularComision(){
-        if(this.montoVenta < 2000){
-            this.porcentajeComision = 10;
-            this.comision = this.montoVenta * (this.porcentajeComision/100);
-        }else{
-            if(this.montoVenta >= 2001){
-                this.porcentajeComision = 12;
-                this.comision = this.montoVenta * (this.porcentajeComision/100);
-            }
+public class ColeccionesList{
+    static Scanner consola = new Scanner(System.in);
+    // implementacion de la interfaz
+    List<String> listaCadenas = new ArrayList<String>();
+    
+    public void llenarArrayList(){
+        // agregamos elementos
+        listaCadenas.add("Arequipa");
+        listaCadenas.add("Tacna");
+        listaCadenas.add("Moquegua");
+        listaCadenas.add("Trujillo");
+        listaCadenas.add("Lima");
+        listaCadenas.add("Chiclayo");
+        listaCadenas.add("Cajamarca");
+        // permite duplicados
+        listaCadenas.add("Cajamarca");
+        listaCadenas.add("Cuzco");
+        listaCadenas.add("Arequipa");
+        Iterator iterador = listaCadenas.iterator();
+        // recorremos y mostramos contenido de lista
+        System.out.println(("\nARRAYLIST\n"));
+        while(iterador.hasNext()){
+            String elemento = (String) iterador.next();
+            System.out.println(elemento);
         }
+        // muestra el tamaño de la lista
+        System.out.println("Tamaño: "+listaCadenas.size());
+        // retorna un objeto segun su posicion
+        int indice = listaCadenas.indexOf("Arequipa");
+        System.out.println("Elemento: "+listaCadenas.get(indice)+"Posicion: "+indice);
+        indice = listaCadenas.indexOf("Lima");
+        System.out.println("Elemento: "+listaCadenas.get(indice)+"Posicion: "+indice);
     }
-    public void calcularSueldoFinal(){
-        this.calcularComision();
-        this.sueldoFinal = this.sueldoBase + comision;
-    }
-    public String ToString(){
-        StringBuilder abMensaje = new StringBuilder();
-        abMensaje.append("-------------\nDATOS DEL VENDEDOR\n-----------");
-        abMensaje.append("\nNombre: "+nombre);
-        abMensaje.append("\nSueldo Base: "+sueldoBase);
-        abMensaje.append("\nMonto Venta: "+montoVenta);
-        abMensaje.append("\nComision: "+comision);
-        abMensaje.append("\nSueldo Final: "+sueldoFinal);
+        
+    public void buscarEnArrayList(){
+        //busqueda de un objeto dentro de la coleccion
+        System.out.println("Ingrese un valor a Buscar: ");
+        String objetoBuscar = consola.next();
 
-        return abMensaje.toString();
+        if(listaCadenas.contains(objetoBuscar)){
+            System.out.println(objetoBuscar+" Se encuentra en la Lista");
+        }else {
+            System.out.println(objetoBuscar+" No se encuentra!!");
+        }
+        
+    }
+
+    public void eliminarEnArrayList(){
+        //eliminar un objeto de la coleccion
+        System.out.println("Ingrese un valor a Borrar: ");
+        String objetoBorrar1 = consola.next();
+        int posicion = listaCadenas.indexOf(objetoBorrar1);
+        listaCadenas.remove(posicion);
+
+        //eliminar todos los objeto de la coleccion
+        listaCadenas.clear();
+        if (listaCadenas.isEmpty()){
+            System.out.println("La lista se encuentra vacia");
+        }
     }
 }
         \end{lstlisting}
-		\item Segundo: Dentro de la clase Main, crearemos un Arreglo de objetos Vendedor. Luego desarrollamos el método para Crear Objetos Vendedor y agregarlos al Arreglo de objetos. Por último, tendremos el método para recorrer el arreglo e imprimir los datos de los objetos vendedores.
+		\item Segundo: Creamos la Clase Main, donde llamamos a nuestra clase y las operaciones implementadas:
         \begin{lstlisting}[language=java]
-import java.util.Scanner;
-public class Main {
-    private static Scanner consola = new Scanner (System.in);
-    private static Vendedor objVendedor;
-    private static final int N = 3;
-    private static Vendedor [] listaVendedores = new Vendedor[N];
-    private static int posicion = 0;
-
-    private static void crearVendedores(){
-        for(int i=0; i<listaVendedores.length; i++){
-            String nombre;
-            double sueldoBase, montoVentas;
-            System.out.println("Ingrese el Nombre: ");
-            nombre = consola.next();
-            System.out.println("Ingrese el Sueldo: ");
-            sueldoBase = consola.nextDouble();
-            System.out.println("Ingrese el Monto de Ventas: ");
-            montoVentas = consola.nextDouble();
-            //CREAMOS INSTANCIA Y LE PASAMOS LOS DATOS
-            objVendedor = new Vendedor(nombre, sueldoBase, montoVentas);
-            objVendedor.calcularSueldoFinal();
-            //AGREGAMOS OBJETO AL ARREGLO DE OBJETOS
-            listaVendedores[i] = objVendedor;
-        }
-    }
-
-    private static void imprimirVendedores(){
-        for(int con = 0; con < listaVendedores.length; con++){
-            Vendedor objVendedor1 = listaVendedores[con];
-            System.out.println(objVendedor1.ToString());
-        }
-    }
+public class ArrayList01 {
     public static void main(String[] args){
-        crearVendedores();
-        imprimirVendedores();
+        ColeccionesList coleccion01 = new ColeccionesList();
+        System.out.println("--------------------");
+        System.out.println("COLECCION ARRAYLIST");
+        System.out.println("--------------------");
+        coleccion01.llenarArrayList();
+        coleccion01.buscarEnArrayList();
+        coleccion01.eliminarEnArrayList();
     }
+    
 }
         \end{lstlisting}
         \item Ejecucion
         \begin{lstlisting}[language=java]
-Ingrese el Nombre: 
-Roni
-Ingrese el Sueldo: 
-20
-Ingrese el Monto de Ventas: 
-34
-Ingrese el Nombre: 
-Reyna
-Ingrese el Sueldo: 
-1000
-Ingrese el Monto de Ventas: 
-45
-Ingrese el Nombre: 
-Walter
-Ingrese el Sueldo: 
-2300
-Ingrese el Monto de Ventas: 
-50
--------------
-DATOS DEL VENDEDOR
------------
-Nombre: Roni
-Sueldo Base: 20.0
-Monto Venta: 34.0
-Comision: 3.4000000000000004
-Sueldo Final: 23.4
--------------
-DATOS DEL VENDEDOR
------------
-Nombre: Reyna
-Sueldo Base: 1000.0
-Monto Venta: 45.0
-Comision: 4.5
-Sueldo Final: 1004.5
--------------
-DATOS DEL VENDEDOR
------------
-Nombre: Walter
-Sueldo Base: 2300.0
-Monto Venta: 50.0
-Comision: 5.0
-Sueldo Final: 2305.0
+--------------------
+COLECCION ARRAYLIST
+--------------------
+
+ARRAYLIST
+
+Arequipa
+Tacna
+Moquegua
+Trujillo
+Lima
+Chiclayo
+Cajamarca
+Cajamarca
+Cuzco
+Arequipa
+Tamaño: 10
+Elemento: ArequipaPosicion: 0
+Elemento: LimaPosicion: 4
+Ingrese un valor a Buscar:
+4
+4 No se encuentra!!
+Ingrese un valor a Borrar:
+4
         \end{lstlisting}
 
         \subsection{EJERCICIO PROPUESTO}
-        \item la clase DemoBatalla.java
+        \item Cree un Proyecto llamado Laboratorio5
+        \item Usted deberá crear las dos clases Soldado.java y VideoJuego3.java. Puede reutilizar lo desarrollado en Laboratorios anteriores.
+        \item Del Soldado nos importa el nombre, puntos de vida, fila y columna (posición en el tablero).
+        \item El juego se desarrollará en el mismo tablero de los laboratorios anteriores. Pero ahora el tablero debe ser un ArrayList bidimensional.
+        \item Tendrá 2 Ejércitos. Inicializar el tablero con n soldados aleatorios entre 1 y 10 para cada Ejército. Cada soldado tendrá un nombre autogenerado: Soldado0X1, Soldado1X1, etc., un valor de puntos de vida autogenerado aleatoriamente [1..5], la fila y columna también autogenerados aleatoriamente (no puede haber 2 soldados en el mismo cuadrado). Se debe mostrar el tablero con todos los soldados creados (distinguir los de un ejército de los del otro ejército). Además de los datos del Soldado con mayor vida de cada ejército, el promedio de puntos de vida de todos los soldados creados por ejército, los datos de todos los soldados por ejército en el orden que fueron creados y un ranking de poder de todos los soldados creados por ejército (del que tiene más nivel de vida al que tiene menos) usando 2 diferentes algoritmos de ordenamiento. Finalmente, que muestre qué ejército ganará la batalla (indicar la métrica usada para decidir al ganador de la batalla).
+        
+        \item la clase VideoJuego3.java        
         \begin{lstlisting}[language=java]
-        // RONI COMPANOCCA CHECCO
+// RONI COMPANOCCA CHECCO
 // CUI: 20210558
-// LABORATORIO 03
+// LABORATORIO 05
 // FUNDAMENTOS DE PROGRAMACION 
 import java.util.*;
 
-public class DemoBatalla {
-    public static void main(String[] args) {
-        Nave[] misNaves = new Nave[10];
-        Scanner sc = new Scanner(System.in);
-        String nomb, col;
-        int fil, punt;
-        boolean est;
-        
-        for (int i = 0; i < misNaves.length; i++) {
-            System.out.println("Nave " + (i + 1));
-            System.out.print("Nombre: ");
-            nomb = sc.next();
-            System.out.print("Fila: ");
-            fil = sc.nextInt();
-            System.out.print("Columna: ");
-            col = sc.next();
-            System.out.print("Estado: ");
-            est = sc.nextBoolean();
-            System.out.print("Puntos: ");
-            punt = sc.nextInt();
-            
-            misNaves[i] = new Nave();
-            //Se crea un objeto Nave y se asigna su referencia a misNaves
-            misNaves[i].setNombre(nomb);
-            misNaves[i].setFila(fil);
-            misNaves[i].setColumna(col);
-            misNaves[i].setEstado(est);
-            misNaves[i].setPuntos(punt);
-        }
-        
-        System.out.println("\nNaves creadas:");
-        mostrarNaves(misNaves);
-        
-        System.out.print("\nIngrese un nombre para mostrar todas las naves con ese nombre: ");
-        String BuscarPorNombre = sc.next();
-        mostrarPorNombre(misNaves, BuscarPorNombre);
-        
-        System.out.print("\nIngrese el numero de puntos para mostrar naves que tengan puntos iguales o menores: ");
-        int BuscarPorPuntos = sc.nextInt();
-        mostrarPorPuntos(misNaves, BuscarPorPuntos);
-        
-        Nave naveMayorPuntos = mostrarMayorPuntos(misNaves);
-        System.out.println("\nNave con mayor numero de puntos: " + naveMayorPuntos);
-        
-        Nave[] navesDesordenadas = NavesDesordenadas(misNaves);
-        System.out.println("\nla lista de naves desordenadas es: ");
-        mostrarNaves(navesDesordenadas);
-    }
-    
-    // Método para mostrar todas las naves
-    public static void mostrarNaves(Nave[] flota) {
-        for (Nave nave : flota) {
-            System.out.println(nave);
-        }
-    }
-    
-    // Método para mostrar todas las naves de un nombre que se pide por teclado
-    public static void mostrarPorNombre(Nave[] flota, String BuscarPorNombre) {
-        for (Nave nave : flota) {
-            if (nave.getNombre().equalsIgnoreCase(BuscarPorNombre)) {
-                System.out.println(nave);
+public class VideoJuego3 {
+
+	public static void main(String[] args) {
+
+		//DECLARACION DE VARIABLES Y ARREGLOS NECESARIOS
+		ArrayList<Soldado> ejercito1 = new ArrayList();
+		ArrayList<Soldado> ejercito2 = new ArrayList();
+		ArrayList<ArrayList<Soldado>> tablero = new ArrayList();
+		int batallon1, batallon2;
+		int vidatotal1=0, vidatotal2=0;
+		double promedioVida1=0, promedioVida2=0;
+
+		// BUCLE PARA DESIGNAR LA CANTIDAD DE FILAS Y COLUMNAS DEL TABLERO
+		for(int i=0; i<10; i++) {
+			tablero.add(new ArrayList<Soldado>());
+			for(int j=0; j<10; j++) {
+				tablero.get(i).add(new Soldado());
+			}
+		}
+
+		// CREACION DEL NUMERO DE POSICIONES DE CADA EJERCITO
+		batallon1 = aleatorio(1,10);
+		batallon2 = aleatorio(1,10);
+
+		// INICIALIZAR ARREGLOS
+		inicializarArreglo(ejercito1, batallon1);
+		inicializarArreglo(ejercito2, batallon2);
+
+		// GENERAR EJERCITOS VALIDOS
+		generarEjercitos(ejercito1, ejercito2);
+
+		// AÑADIR LOS EJERCITOS AL TABLERO
+		añadirTablero(ejercito1, tablero);
+		añadirTablero(ejercito2, tablero);
+
+		//IMPRIMIR EL TABLERO
+		imprimirTablero(tablero);
+
+		//IMPRIMIR LOS SOLDADOS DE MAYOR VIDA DE CADA EJERCITO
+		System.out.println("Soldado de mayor vida del ejercito 1");
+		SoldadoConMayorVida(ejercito1);
+		System.out.println("soldado de mayor vida del ejercito 2");
+		SoldadoConMayorVida(ejercito2);
+
+		//IMPRIMIR LA VIDA TOTAL Y EL PROMEDIO DEL EJERCITO 1
+		System.out.println("\nEJERCITO 1: ");
+		for (int i=0; i<ejercito1.size(); i++) {
+			vidatotal1+=ejercito1.get(i).getPuntos();
+			promedioVida1 = vidatotal1/(ejercito1.size()*1.0);
+		}
+		System.out.println("Vida total: "+vidatotal1);
+		System.out.println("Promedio de vida: "+promedioVida1);
+		
+		//IMPRIMIR LA VIDA TOTAL Y EL PROMEDIO DEL EJERCITO 2
+		System.out.println("\nEJERCITO 2: ");
+		for (int i=0; i<ejercito2.size(); i++) {
+			vidatotal2+=ejercito2.get(i).getPuntos();
+			promedioVida2 = vidatotal2/(ejercito2.size()*1.0);
+		}
+		System.out.println("Vida total: "+vidatotal2);
+		System.out.println("Promedio de vida: "+promedioVida2);
+
+		//IMPRIMIR LOS SOLDADOS CREADOS EN EL ORDEN POR DEFECTO
+		System.out.println("\nLista ejercito 1:");
+		for(int i=0; i<ejercito1.size(); i++) {
+			imprimir(ejercito1.get(i));
+		}
+		System.out.println("\nLista ejercito 2:");
+		for(int i=0; i<ejercito2.size(); i++) {
+			imprimir(ejercito2.get(i));
+		}
+
+		// IMPRIMIR LOS DATOS DE LOS SOLDADOS ORDENADOS DE MAYOR A MENOR DEPENDIENDO DE SU NIVEL DE VIDA USANDO DOS TIPOS DE ALGORITMO
+		ordenarPorVidaMetodoA(ejercito1);
+		ordenarPorVidaMetodoB(ejercito2);
+		System.out.println("\nEjercito 1 Ordenados por nivel de vida");
+		for(int i=0; i<ejercito1.size(); i++) {
+			imprimir(ejercito1.get(i));
+		}
+		System.out.println("\nEjercito 2 Ordenados por nivel de vida");
+		for(int i=0; i<ejercito2.size(); i++) {
+			imprimir(ejercito2.get(i));
+		}
+		
+		// MOSTRAR EJERCITO GANADOR LA METRICA USADA ARA DESIGNAR AL GANADOR ES POR EL NIVEL DEL PROMEDIO DE VIDA DE CADA EJERCITO
+		if(promedioVida1>promedioVida2) {
+			System.out.println("\nGANADOR ***EJERCITO 1***");
+		}else if (promedioVida1<promedioVida2) {
+			System.out.println("\nGANADOR ***EJERCITO 2***");
+			}
+		else {
+			System.out.print("\n***ES UN EMPATE***");
+		}
+	}
+
+	// METODO PARA CREAR NUMEROS ALEATORIOS EN UN RANGO
+	public static int aleatorio(int min, int max) {
+		return(int)(Math.random()*(max-min+1)+min);
+	}
+
+	// METODO PARA INICIAR UN ARRAYLIST
+	public static void inicializarArreglo (ArrayList<Soldado> soldadito, int num) {
+		for (int i=0; i<num; i++) {
+			soldadito.add(new Soldado());
+		}
+	}
+
+	// METODO PARA GENERAR DATOS DEL OBJETO SOLDADO
+	public static Soldado generarDatos() {
+		Soldado soldadito = new Soldado();
+		soldadito.setPuntos(aleatorio(1,5));
+		soldadito.setColumna(aleatorio(1,10));
+		soldadito.setFila(aleatorio(1,10));
+		return soldadito;
+	}
+
+	// METODOS PARA GENERAR LOS EJERCITOS DE MANERA ALEATORIA
+	public static void generarEjercitos(ArrayList<Soldado>B1, ArrayList<Soldado>B2) {
+		ArrayList<Soldado>Soldados = new ArrayList();
+		Soldados.add(generarDatos());
+		for (int i=1; i<(B1.size()+B2.size()); i++) {
+			Soldados.add(generarDatos());
+			for (int j=0; j<i; j++) {
+				if(Soldados.get(i).getFila()==Soldados.get(j).getFila()) {
+					if(Soldados.get(i).getColumna()==Soldados.get(j).getColumna()){
+						Soldados.remove(i);
+						i--;
+					}
+				}
+			}
+		}
+		for (int i=0; i<B1.size(); i++) {
+			B1.add(i, Soldados.get(i));
+			B1.get(i).setNombre("Soldado"+i+"x1");
+			B1.get(i).setColumn(B1.get(i).getPuntos()+"[E1]");
+			B1.remove(i+1);
+		}
+		for (int i=0; i<B2.size(); i++) {
+			B2.add(i, Soldados.get(i+B1.size()));
+			B2.get(i).setNombre("Soldado"+i+"x2");
+			B2.remove(i+1);
+			B2.get(i).setColumn(B2.get(i).getPuntos()+"[E2]");
+		}
+	}
+
+	// METODO PARA AÑADIR LOS EJERCITOS AL TABLERO
+	public static void añadirTablero(ArrayList<Soldado>soldadito, ArrayList<ArrayList<Soldado>>table) {
+		for (int i=0; i<soldadito.size(); i++) {
+			table.get(soldadito.get(i).getColumna()-1).add(soldadito.get(i).getFila()-1,soldadito.get(i));
+			table.get(soldadito.get(i).getColumna()-1).remove(soldadito.get(i).getFila());
+		}
+	}
+
+	// METODO PARA IMPRIMIR EL TABLERO EN LA CUAL SE DESARROLLA EL JUEGO
+	public static void imprimirTablero(ArrayList<ArrayList<Soldado>> table) {
+		System.out.println("\tA\tB\tC\tD\tF\tG\tH\tI\tJ");
+		for(int i=0; i<table.size(); i++) {
+			System.out.print(i+1);
+			for(int j=0; j<table.get(i).size();j++) {
+				System.out.print("\t"+table.get(i).get(j).getColumn());
+			}
+			System.out.println("\n");
+		}
+	}
+	
+	//METODO PARA IMPRIMIR LOS SOLDADOS DE MAYOR VIDA
+	public static void SoldadoConMayorVida (ArrayList<Soldado>soldadito) {
+		Soldado mayor = new Soldado();
+		mayor.setPuntos(0);
+		for(int i=0; i<soldadito.size();i++) {
+			if (mayor.getPuntos()<soldadito.get(i).getPuntos()) {
+				mayor = soldadito.get(i);
+			}
+		}
+		imprimir(mayor);
+	}
+	
+	// METODO PARA IMPRIMIR EL NOMBRE, LA POSICION Y NIVEL DE VIDA DEL SOLDADO
+	public static void imprimir(Soldado soldadito) {
+		System.out.println("Nombre: "+soldadito.getNombre()+"\nPosicion: "+soldadito.getColumna()+"X"+soldadito.getFila()+"\tVida: "+soldadito.getPuntos());
+	}
+	
+	// METODO QUE NOS AYUDA A ORDENAR LOS SOLDADOS DE ACUERDO A SU NIVEL DE VIDA, USUANDO UN ALGORITMO DE ORDENAMIENTO DE BURBUJA
+	public static void ordenarPorVidaMetodoA(ArrayList<Soldado>soldadito) {
+		Soldado aux = new Soldado();
+		for(int i=0; i<soldadito.size()-1; i++) {
+			for(int j=0; j<soldadito.size()-i-1; j++) {
+				if(soldadito.get(j).getPuntos()<soldadito.get(j+1).getPuntos()) {
+					aux = soldadito.get(j);
+					soldadito.set(j,soldadito.get(j+1));
+					soldadito.set(j+1,aux);
+				}
+			}
+		}
+	}
+
+    // METODO QUE NOS AYUDA A ORDENAR LOS SOLDADOS DE ACUERDO A SU NIVEL DE VIDA, EN ESTA OCACION DIFERENTE A LA ANTERIOR QUE ERA ALGORITMO DE BURBUJA
+    public static void ordenarPorVidaMetodoB(ArrayList<Soldado> soldadito) {
+        Collections.sort(soldadito, new Comparator<Soldado>() {
+            public int compare(Soldado s1, Soldado s2) {
+                // Orden descendente por puntos de vida
+                return Integer.compare(s2.getPuntos(), s1.getPuntos());
             }
-        }
-    }
-    
-    // Método para mostrar todas las naves con un número de puntos inferior o igual
-    // al número de puntos que se pide por teclado
-    public static void mostrarPorPuntos(Nave[] flota, int BuscarPorPuntos) {
-        for (Nave nave : flota) {
-            if (nave.getPuntos() <= BuscarPorPuntos) {
-                System.out.println(nave);
-            }
-        }
-    }
-    
-    // Método que devuelve la Nave con mayor número de Puntos
-    public static Nave mostrarMayorPuntos(Nave[] flota) {
-        Nave mayorPuntos = null;
-        int maxPuntos = Integer.MIN_VALUE;
-        
-        for (Nave nave : flota) {
-            if (nave.getPuntos() > maxPuntos) {
-                maxPuntos = nave.getPuntos();
-                mayorPuntos = nave;
-            }
-        }
-        
-        return mayorPuntos;
-    }
-    
-    // Crear un método que devuelva un nuevo arreglo de objetos con todos los objetos previamente ingresados
-    // pero aleatoriamente desordenados
-    public static Nave[] NavesDesordenadas(Nave[] flota) {
-        Nave[] navesDesordenadas = Arrays.copyOf(flota, flota.length); // Crear una copia del arreglo original
-        Random random = new Random();
-    
-        // Realizar una permutación aleatoria del arreglo
-        for (int i = navesDesordenadas.length - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
-            Nave aux = navesDesordenadas[i];
-            navesDesordenadas[i] = navesDesordenadas[j];
-            navesDesordenadas[j] = aux;
-        }
-    
-        return navesDesordenadas;
+        });
     }
 }
-
         \end{lstlisting}
 
-        \item la clase Nave.java
+        \item la clase Soldado.java
         \begin{lstlisting}[language=java]
-public class Nave {
-    private String nombre;
-    private int fila;
-    private String columna;
-    private boolean estado;
-    private int puntos;
+// RONI COMPANOCCA CHECCO
+// CUI: 20210558
+// LABORATORIO 05
+// FUNDAMENTOS DE PROGRAMACION - laboratorio
+// clase Soldado.java
+public class Soldado {
+	private String nombre;
+	private int fila;
+	private int columna;
+	private int puntos;
+	private String column;
+	
+	public Soldado() {
+		nombre = "";
+		fila = 0;
+		columna = 0;
+		puntos = 0;
+		column = "";
+	}
 
-    // METODOS MUTADORES
-    public void setNombre(String n) {
-        nombre = n;
-    }
+	// METODOS MUTADORES
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setFila(int f) {
-        fila = f;
-    }
+	public void setFila(int fila) {
+		this.fila = fila;
+	}
 
-    public void setColumna(String c) {
-        columna = c;
-    }
+	public void setColumna(int columna) {
+		this.columna = columna;
+	}
 
-    public void setEstado(boolean e) {
-        estado = e;
-    }
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+	
+	public void setColumn(String column) {
+		this.column = column;
+	}
 
-    public void setPuntos(int p) {
-        puntos = p;
-    }
+	// METODOS ACCESORES
+	public String getNombre() {
+		return nombre;
+	}
 
-    // METODOS ACCESORES
-    public String getNombre() {
-        return nombre;
-    }
+	public int getFila() {
+		return fila;
+	}
 
-    public int getFila() {
-        return fila;
-    }
+	public int getColumna() {
+		return columna;
+	}
 
-    public String getColumna() {
-        return columna;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public int getPuntos() {
-        return puntos;
-    }
-
-    public String toString() {
-        return "Nave [nombre=" + nombre + ", fila=" + fila + ", columna=" + columna + ", estado=" + estado + ", puntos=" + puntos + "]";
-    }
+	public int getPuntos() {
+		return puntos;
+	}
+	
+	public String getColumn() {
+		return column;
+	}
 }
          \end{lstlisting}
 
          \item Ejecucion
-        \begin{lstlisting}[language=java]
-Nave 1
-Nombre: Huascar
-Fila: 1
-Columna: 1
-Estado: TRUE
-Puntos: 3
-Nave 2
-Nombre: Atlantis
-Fila: 2
-Columna: 2
-Estado: TRUE
-Puntos: 4
-Nave 3
-Nombre: Discovery
-Fila: 3
-Columna: 3
-Estado: TRUE
-Puntos: 3
-Nave 4
-Nombre: EnterPrice
-Fila: 3
-Columna: 2
-Estado: TRUE
-Puntos: 5
-Nave 5
-Nombre: Galactica
-Fila: 4
-Columna: 4
-Estado: TRUE
-Puntos: 4
-Nave 6
-Nombre: Halcon
-Fila: 5
-Columna: 5
-Estado: FALSE
-Puntos: 4
-Nave 7
-Nombre: Estrella
-Fila: 6
-Columna: 6
-Estado: TRUE
-Puntos: 3
-Nave 8
-Nombre: Moya
-Fila: 7
-Columna: 7
-Estado: TRUE
-Puntos: 5
-Nave 9
-Nombre: Odiseus
-Fila: 8
-Columna: 8
-Estado: TRUE
-Puntos: 4
-Nave 10
-Nombre: Rama
-Fila: 9
-Columna: 9
-Estado: TRUE
-Puntos: 3
+         \begin{lstlisting}[language=java]
+        A       B       C       D       F       G       H       I       J
+1
 
-Naves creadas:
-Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
-Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
-Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
-Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
-Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
-Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
-Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
-Nave [nombre=Moya, fila=7, columna=7, estado=true, puntos=5]
-Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
-Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+2                       1[E2]
 
-Ingrese un nombre para mostrar todas las naves con ese nombre: Rama
-Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+3
 
-Ingrese el numero de puntos para mostrar naves que tengan puntos iguales o menores: 4
-Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
-Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
-Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
-Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
-Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
-Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
-Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
-Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
+4
 
-Nave con mayor numero de puntos: Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
+5                       3[E2]                   1[E1]
 
-la lista de naves desordenadas es:
-Nave [nombre=Odiseus, fila=8, columna=8, estado=true, puntos=4]
-Nave [nombre=Estrella, fila=6, columna=6, estado=true, puntos=3]
-Nave [nombre=Halcon, fila=5, columna=5, estado=false, puntos=4]
-Nave [nombre=Rama, fila=9, columna=9, estado=true, puntos=3]
-Nave [nombre=Discovery, fila=3, columna=3, estado=true, puntos=3]
-Nave [nombre=Atlantis, fila=2, columna=2, estado=true, puntos=4]
-Nave [nombre=Galactica, fila=4, columna=4, estado=true, puntos=4]
-Nave [nombre=Moya, fila=7, columna=7, estado=true, puntos=5]
-Nave [nombre=Huascar, fila=1, columna=1, estado=true, puntos=3]
-Nave [nombre=EnterPrice, fila=3, columna=2, estado=true, puntos=5]
+6               2[E2]                   2[E2]   2[E2]
+
+7                       5[E2]                   4[E2]
+
+8
+
+9
+
+10
+
+Soldado de mayor vida del ejercito 1
+Nombre: Soldado0x1
+Posicion: 5X6   Vida: 1
+soldado de mayor vida del ejercito 2
+Nombre: Soldado4x2
+Posicion: 7X3   Vida: 5
+
+EJERCITO 1:
+Vida total: 1
+Promedio de vida: 1.0
+
+EJERCITO 2:
+Vida total: 19
+Promedio de vida: 2.7142857142857144
+
+Lista ejercito 1:
+Nombre: Soldado0x1
+Posicion: 5X6   Vida: 1
+
+Lista ejercito 2:
+Nombre: Soldado0x2
+Posicion: 6X5   Vida: 2
+Nombre: Soldado1x2
+Posicion: 2X3   Vida: 1
+Nombre: Soldado2x2
+Posicion: 6X2   Vida: 2
+Nombre: Soldado3x2
+Posicion: 6X6   Vida: 2
+Nombre: Soldado4x2
+Posicion: 7X3   Vida: 5
+Nombre: Soldado5x2
+Posicion: 5X3   Vida: 3
+Nombre: Soldado6x2
+Posicion: 7X6   Vida: 4
+
+Ejercito 1 Ordenados por nivel de vida
+Nombre: Soldado0x1
+Posicion: 5X6   Vida: 1
+
+Ejercito 2 Ordenados por nivel de vida
+Nombre: Soldado4x2
+Posicion: 7X3   Vida: 5
+Nombre: Soldado6x2
+Posicion: 7X6   Vida: 4
+Nombre: Soldado5x2
+Posicion: 5X3   Vida: 3
+Nombre: Soldado0x2
+Posicion: 6X5   Vida: 2
+Nombre: Soldado2x2
+Posicion: 6X2   Vida: 2
+Nombre: Soldado3x2
+Posicion: 6X6   Vida: 2
+Nombre: Soldado1x2
+Posicion: 2X3   Vida: 1
+
+GANADOR ***EJERCITO 2***
          \end{lstlisting}
-    
-    \subsection{SOLUCIONAR LA ACTIVIDAD 4 DE LA PRACTICA 1 PERO USANDO ARREGLOS DE OBJETOS}
-    
-    \item Clase menu
-    \begin{lstlisting}[language=java]
-// RONI COMPANOCCA CHECCO
-// CUI: 20210558
-// LABORATORIO 03
-// FUNDAMENTOS DE PROGRAMACION 
-import java.util.Scanner;
-public class Menu {
-    private static Scanner consola = new Scanner (System.in);
-    private static Soldado objSoldado;
-    private static final int N = 5;
-    private static Soldado [] soldadito = new Soldado[N];
-
-    private static void crearSoldados(){
-        for(int i=0; i<soldadito.length; i++){
-            String nombre;
-            int nivelVida;
-            System.out.println("Ingrese el Nombre: ");
-            nombre = consola.next();
-            System.out.println("Ingrese el nivel de Vida: ");
-            nivelVida = consola.nextInt();
-            //CREAMOS INSTANCIA Y LE PASAMOS LOS DATOS
-            objSoldado = new Soldado(nombre, nivelVida);
-            //AGREGAMOS OBJETO AL ARREGLO DE OBJETOS
-            soldadito[i] = objSoldado;
-        }
-    }
-
-    private static void imprimirSoldados(){
-        for(int con = 0; con < soldadito.length; con++){
-            Soldado objSoldado1 = soldadito[con];
-            System.out.println(objSoldado1.ToString());
-        }
-    }
-    public static void main(String[] args){
-        crearSoldados();
-        imprimirSoldados();
-    }
-}
-    \end{lstlisting}
-
-    \item Clase Soldado
-    \begin{lstlisting}[language=java]
-import java.util.*;
-
-public class Soldado{
-    //ATRIBUTOS
-    private String nombre;
-    private int nivelVida;
-    //CONSTRUCTORES
-    public Soldado(){
-        this.nombre = "";
-        this.nivelVida = 0;
-    }
-
-    public Soldado(String nombre, int nivelVida){
-        this.nombre = nombre;
-        this.nivelVida = nivelVida;
-    }
-
-    public String ToString(){
-        StringBuilder abMensaje = new StringBuilder();
-        abMensaje.append("-------------\nDATOS DEL SOLDADO\n-----------");
-        abMensaje.append("\nNombre: "+nombre);
-        abMensaje.append("\nNivel de vida: "+nivelVida);
-
-        return abMensaje.toString();
-    }
-}
-    \end{lstlisting}
-    
-    \item Ejecucion
-    \begin{lstlisting}[language=java]
-Ingrese el Nombre:
-roni
-Ingrese el nivel de Vida:
-3
-Ingrese el Nombre:
-jesus
-Ingrese el nivel de Vida:
-3
-Ingrese el Nombre:
-raton
-Ingrese el nivel de Vida:
-4
-Ingrese el Nombre:
-simos
-Ingrese el nivel de Vida:
-5
-Ingrese el Nombre:
-pedro
-Ingrese el nivel de Vida:
-4
--------------
-DATOS DEL SOLDADO
------------
-Nombre: roni
-Nivel de vida: 3
--------------
-DATOS DEL SOLDADO
------------
-Nombre: jesus
-Nivel de vida: 3
--------------
-DATOS DEL SOLDADO
------------
-Nombre: raton
-Nivel de vida: 4
--------------
-DATOS DEL SOLDADO
------------
-Nombre: simos
-Nivel de vida: 5
--------------
-DATOS DEL SOLDADO
------------
-Nombre: pedro
-Nivel de vida: 4
-        \end{lstlisting}
-    
-    \subsection{SOLUCIONAR LA ACTIVIDAD 5 DE LA PRACTICA 1 PERO USANDO ARREGLOS DE OBJETOS}
-
-    \item Menu de la batalla
-    \begin{lstlisting}[language=java]
-// RONI COMPANOCCA CHECCO
-// CUI: 20210558
-// LABORATORIO 03
-// FUNDAMENTOS DE PROGRAMACION 
-import java.util.Random;
-
-public class EjercitoMenu {
-    public static void main(String[] args) {
-        Random aleatorio = new Random();
-
-        // Crear dos ejércitos con un número aleatorio de soldados entre 1 y 5
-        int Ejercito1 = aleatorio.nextInt(5) + 1;
-        int Ejercito2 = aleatorio.nextInt(5) + 1;
-
-        Ejercito ejercito1 = new Ejercito(Ejercito1);
-        Ejercito ejercito2 = new Ejercito(Ejercito2);
-
-        // Mostrar los datos de ambos ejércitos
-        System.out.println("Ejército 1:");
-        mostrarEjercito(ejercito1);
-
-        System.out.println("\nEjército 2:");
-        mostrarEjercito(ejercito2);
-
-        // DETERMINAMOS EL EJERCITO GANADOR
-        int numeroSoldadosEjercito1 = ejercito1.getNumeroDeSoldados();
-        int numeroSoldadosEjercito2 = ejercito2.getNumeroDeSoldados();
-
-        if (numeroSoldadosEjercito1 > numeroSoldadosEjercito2) {
-            System.out.println("\nEl Ejército 1 es el ganador.");
-        } else if (numeroSoldadosEjercito2 > numeroSoldadosEjercito1) {
-            System.out.println("\nEl Ejército 2 es el ganador.");
-        } else {
-            System.out.println("\nLa batalla no tuvo victorioso a ningun ejercito");
-        }
-    }
-
-    public static void mostrarEjercito(Ejercito ejercito) {
-        Soldados[] soldados = ejercito.getSoldados();
-        for (int i = 0; i < soldados.length; i++) {
-            System.out.println("Soldado " + i + ": " + soldados[i].getNombre());
-        }
-    }
-}
-    \end{lstlisting}
-
-    \item La primera clase Soldados
-    \begin{lstlisting}[language=java]
-public class Soldados {
-    private String nombre;
-
-    public Soldados(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-}
-    \end{lstlisting}
-    
-    \item La clase Ejercito
-    \begin{lstlisting}[language=java]
-class Ejercito {
-    private Soldados[] soldado;
-
-    public Ejercito(int numeroSoldados) {
-        soldado = new Soldados[numeroSoldados];
-        for (int i = 0; i < numeroSoldados; i++) {
-            soldado[i] = new Soldados("Soldado" + i);
-        }
-    }
-
-    public Soldados[] getSoldados() {
-        return soldado;
-    }
-
-    public int getNumeroDeSoldados() {
-        return soldado.length;
-    }
-}
-    \end{lstlisting}
-
-    \item Ejecucion
-    \begin{lstlisting}[language=java]
-Ejército 1:
-Soldado 0: Soldado0
-Soldado 1: Soldado1
-Soldado 2: Soldado2
-
-Ejército 2:
-Soldado 0: Soldado0
-Soldado 1: Soldado1
-Soldado 2: Soldado2
-Soldado 3: Soldado3
-Soldado 4: Soldado4
-
-El Ejército 2 es el ganador.
-    \end{lstlisting}
-    
-	\end{itemize}
  
     \section{CUESTIONARIO}
 
 	\begin{itemize}
-		\subsection ¿Qué ventajas tienen los arreglos de objetos sobre los arreglos estándar?
-        \item Capacidad de almacenar valores nulos: Los arreglos de objetos pueden contener elementos nulos (null), lo que significa que puedes tener celdas vacías en un arreglo sin lanzar una excepción. En contraste, los arreglos estándar en muchos lenguajes no permiten elementos nulos, lo que puede ser inconveniente en algunas situaciones.
+	\subsection {¿Cómo se declara e inicializa un ArrayList bidimensional?}
+        \item En Java, no existe un tipo de dato ArrayList bidimensional como tal. Sin embargo, puedes lograr una funcionalidad similar utilizando un ArrayList de ArrayLists, lo que te permitirá crear una estructura de datos bidimensional.
+        \begin{lstlisting}[language=java]
+        ArrayList<ArrayList<Integer>> matriz = new ArrayList<>();
+        \end{lstlisting}
 		
-  \subsection ¿Cómo debe inicializarse un arreglo de objetos?
-        \item Se debe inicializar de esta forma
-      \begin{lstlisting}[language=java]
-  miArreglo = new MiClase[tamaño];
-    \end{lstlisting}
+    \subsection {¿Qué ventajas tienen los ArrayList con respecto a los arreglos?}
+        \item Los ArrayList en Java tienen varias ventajas con respecto a los arreglos (arrays) que los hacen una elección más flexible y poderosa en muchas situaciones: Tamaño dinámico, Inserción y eliminación eficiente, Flexibilidad, Métodos útiles, Uso de autoboxing, etc.
 
-		\subsection ¿Cuándo deberíamos usar los arreglos de objetos?
-  \item como cuando necesitamos almacenar una colección de objetos relacionados: Los arreglos de objetos son ideales para agrupar objetos que están relacionados entre sí de alguna manera. Por ejemplo, podemos usar un arreglo de objetos "Estudiante" para almacenar información sobre estudiantes en una clase.
+	\subsection {¿Mencione 4 métodos importantes del ArrayList? ¿Qué finalidad tienen?}
+        \item add(E elemento): Este método se utiliza para agregar un elemento al final del ArrayList. La finalidad principal de este método es aumentar la capacidad del ArrayList si es necesario y agregar el elemento especificado al final de la lista.
+        \item remove(int índice): Este método se usa para eliminar el elemento en el índice especificado del ArrayList. La finalidad principal es eliminar un elemento en una posición particular de la lista.
+        \item get(int índice): Este método se emplea para obtener el elemento en el índice especificado del ArrayList. La finalidad es recuperar un elemento en una posición particular de la lista.
+        \item size(): Este método devuelve el número de elementos en el ArrayList. La finalidad es conocer la cantidad de elementos presentes en la lista.
 	\end{itemize}
 	
 	\section{REFERENCIAS}
